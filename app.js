@@ -36,7 +36,7 @@ Vue.component('output-uploader', {
         },
 
         requestInputContents() {
-            return this.$http.get('/input/' + this.output.fileName);
+            return this.$http.get('./input/' + this.output.fileName);
         },
 
         calculateScore(inputContents, outputContents) {
