@@ -34,9 +34,15 @@ export default {
     return {}
   },
 
+  watch: {
+    files(newValue, oldValue) {
+      console.log('in scoreboard files changed')
+    }
+  },
+
   methods: {
     clearScores() {
-      this.$emit('hc-scoreboard:clear')
+      this.$emit('clear')
     }
   },
 

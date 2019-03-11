@@ -1,4 +1,5 @@
 import {to} from './utils.js'
+import downloader from './downloader'
 
 class Line {
   constructor(line, delim=' ') {
@@ -7,7 +8,7 @@ class Line {
   }
 
   next(converter=to.int) {
-    return converter(this.segments[++this.index])
+    return converter(this.segments[this.index++])
   }
 
   rest(converter=to.int) {
@@ -23,13 +24,13 @@ class Line {
 }
 
 class Reader {
-  constructor(lines) {
-    this.lines = lines
+  constructor(content) {
+    this.lines = content.split('\n')
     this.index = 0
   }
 
   line() {
-    return new Line(this.lines[++this.index])
+    return new Line(this.lines[this.index++])
   }
 
   next(converter=to.int) {
@@ -40,8 +41,9 @@ class Reader {
     return this.line().rest(converter)
   }
 
-  static createFromRemote() {
-
+  static createFromRemoteInput(year, round, filename) {
+    return downloader(year, round, filename)
+      .then(content => new Reader(content))
   }
 }
 

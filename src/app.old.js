@@ -3,6 +3,7 @@ Vue.use(VueMaterial.default);
 Vue.component('output-uploader', {
     props: ['output'],
     template: '#output-uploader-tpl',
+
     data() {
         return {
             selectedFile: null,
@@ -11,6 +12,7 @@ Vue.component('output-uploader', {
             loading: false
         };
     },
+
     methods: {
         onFileChange(ev) {
             this.loading = true;

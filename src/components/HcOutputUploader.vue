@@ -6,14 +6,17 @@
     </div>
     <div class="content">
       <div class="uploader">
-        <a class="button is-link">Upload File</a>
+        <label>
+          <a :class="['button', 'is-link', {'is-loading': loading}]">Upload file</a>
+          <input type="file" ref="f" :disabled="loading" @change="onFileChange">
+        </label>
         <span class="tag is-light is-medium">
           <span v-if="!outputFile" class="placeholder">or drop file here</span>
-          <span v-if="outputFile">{{ outputFile }}</span>
+          <span v-if="outputFile">{{ outputFile.name }}</span>
         </span>
       </div>
       <div class="score">
-        <span class="val">{{ currentScore }}</span>
+        <span class="val">{{ score }}</span>
         <span class="pts">pts</span>
       </div>
     </div>
@@ -21,17 +24,67 @@
 </template>
 
 <script>
+import HcReader from '../scripts/reader'
+import graderLoader from '../scripts/graders'
+
 export default {
   name: 'hc-uploader',
-  props: ['file'],
+  props: ['year', 'round', 'file'],
 
   data () {
     return {
-      currentScore: 0,
+      loading: false,
+      score: 0,
       bestScore: 0,
       outputFile: null
     }
   },
+
+  watch: {
+    file() {
+      this.score = 0
+      this.bestScore = 0
+      this.outputFile = null
+    }
+  },
+
+  methods: {
+    onFileChange(ev) {
+      this.loading = true
+      this.score = 0
+      this.outputFile = ev.target.files[0]
+
+      const fsReader = new FileReader()
+      fsReader.onload = (ev) => {
+        const content = ev.target.result
+        const hcOutputReader = new HcReader(content)
+
+        HcReader
+          .createFromRemoteInput(this.year, this.round, this.file.filename)
+          .then(hcInputReader => {
+            const graderFunction = graderLoader(this.year, this.round)
+            return graderFunction(hcInputReader, hcOutputReader)
+          })
+          .then(score => {
+            this.setScore(score)
+            this.loading = false
+          })
+          .catch(err => {
+            console.error(err)
+            this.loading = false
+          })
+      }
+
+      fsReader.readAsText(this.outputFile)
+    },
+
+    setScore(score) {
+      this.score = score
+
+      if (score > this.bestScore)
+        this.$emit('best', score, this.file)
+    }
+  }
 }
 </script>
 
@@ -58,6 +111,10 @@ export default {
       align-items: center;
       flex: 1;
 
+      input[type="file"] {
+        display: none;
+      }
+
       .button {
         margin-right: 16px;
       }
@@ -74,11 +131,22 @@ export default {
       }
     }
 
-    .score .val {
-      display: inline-block;
-      text-align: right;
-      font-size: 20px;
+    .score {
       min-width: 100px;
+      display: flex;
+      text-align: right;
+
+      .val {
+        display: inline-block;
+        font-size: 20px;
+        line-height: 20px;
+        flex: 1;
+        padding-right: 4px;
+      }
+
+      .pts {
+        line-height: 20px;
+      }
     }
   }
 }

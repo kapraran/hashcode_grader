@@ -4,7 +4,7 @@
       <article class="media">
         <figure class="media-left">
           <p class="image">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
+            <img src="https://bulma.io/images/placeholders/64x64.png">
           </p>
         </figure>
         <div class="media-content">
@@ -18,11 +18,11 @@
           <nav class="level">
             <div class="level-left">
               <div class="level-item">
-                <a class="button is-link">
+                <a :href="pdfUrl" target="_blank" class="button is-info is-small">
                   <span class="icon">
                     <i class="fas fa-arrow-down"></i>
                   </span>
-                  <span>Download PDF</span>
+                  <span>Download Problem Statement</span>
                 </a>
               </div>
             </div>
@@ -50,6 +50,12 @@ export default {
   watch: {
     problem(newProblem, oldProblem) {
       this.show = true
+    }
+  },
+
+  computed: {
+    pdfUrl() {
+      return `./assets/pdfs/${this.problem.pdf}`
     }
   }
 }

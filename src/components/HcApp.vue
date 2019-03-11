@@ -9,7 +9,13 @@
     <main>
       <div>
         <div id="hc-uploader">
-          <hc-output-uploader v-for="file in files" :file="file"></hc-output-uploader>
+          <hc-output-uploader
+            v-for="file in files"
+            :year="selectedYear"
+            :round="selectedRound"
+            :file="file"
+            @best="onBestScore">
+          </hc-output-uploader>
         </div>
       </div>
 
@@ -71,6 +77,16 @@ export default {
         this.files = roundData.input.map(data => Object.assign(data, {bestScore: 0}))
         this.problem = roundData.problem
         break
+      }
+    },
+
+    onBestScore(score, file) {
+      for (let i in this.files) {
+        const f = this.files[i]
+        if (f.filename === file.filename) {
+          f.bestScore = score
+          return this.$set(this.files, i, f)
+        }
       }
     }
   }
