@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {EventBus} from '../utils'
+import {EventBus} from '../scripts/utils'
 
 export default {
   name: 'hc-dropdown',

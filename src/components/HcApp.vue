@@ -1,27 +1,38 @@
 <template>
   <div id="app-container">
-    <hc-header :manifest="manifest" @yearChange="onYearChange" @roundChange="onRoundChange"></hc-header>
+    <hc-header
+      :manifest="manifest"
+      @yearChange="onYearChange"
+      @roundChange="onRoundChange">
+    </hc-header>
 
     <main>
-      <div id="hc-uploader">
-        <hc-output-uploader v-for="file in files" :file="file"></hc-output-uploader>
+      <div>
+        <div id="hc-uploader">
+          <hc-output-uploader v-for="file in files" :file="file"></hc-output-uploader>
+        </div>
       </div>
 
-      <hc-scoreboard :files="files"></hc-scoreboard>
+      <aside>
+        <hc-problem v-if="problem" :problem="problem"></hc-problem>
+        <hc-scoreboard :files="files"></hc-scoreboard>
+      </aside>
     </main>
   </div>
 </template>
 
 <script>
- import HcHeader from './HcHeader.vue'
- import HcOutputUploader from './HcOutputUploader.vue'
- import HcScoreboard from './HcScoreboard.vue'
- import manifest from '../hashcode_grader_manifest.json'
+import HcHeader from './HcHeader.vue'
+import HcProblem from './HcProblem.vue'
+import HcOutputUploader from './HcOutputUploader.vue'
+import HcScoreboard from './HcScoreboard.vue'
+import manifest from '../hashcode_grader_manifest.json'
 
 export default {
   name: 'app',
   components: {
     HcHeader,
+    HcProblem,
     HcOutputUploader,
     HcScoreboard
   },
@@ -31,6 +42,7 @@ export default {
       manifest,
       selectedYear: null,
       selectedRound: null,
+      problem: null,
       files: []
     }
   },
@@ -42,29 +54,60 @@ export default {
   methods: {
     onYearChange(year) {
       this.selectedYear = year
-      this.loadFiles()
+      this.onStateChange()
     },
 
     onRoundChange(round) {
       this.selectedRound = round
-      this.loadFiles()
+      this.onStateChange()
     },
 
-    loadFiles() {
+    onStateChange() {
       const yearRounds = this.manifest[this.selectedYear]
       for (let roundData of yearRounds) {
         if (roundData.round !== this.selectedRound)
           continue
 
-        return this.files = roundData.input.map(data => Object.assign(data, {bestScore: 0}))
+        this.files = roundData.input.map(data => Object.assign(data, {bestScore: 0}))
+        this.problem = roundData.problem
+        break
       }
     }
   }
 }
 </script>
 
-<style lang="css">
-  #app {
-    color: #56b983;
+<style lang="scss">
+$hc-padding-ds: 32px;
+
+#app {
+
+}
+
+#app-container {
+  /*color: #56b983;*/
+}
+
+main {
+  display: flex;
+
+  & > div, & > aside {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $hc-padding-ds $hc-padding-ds $hc-padding-ds;
   }
+
+  & > div {
+    flex: 1;
+    flex-shrink: 0;
+  }
+
+  & > aside {
+    flex: 1;
+  }
+}
+
+// #hc-uploader {
+//   padding: 0 32px 32px 32px;
+// }
 </style>

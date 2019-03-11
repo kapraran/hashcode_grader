@@ -3,6 +3,11 @@
     {
       "label": "Online qualification round",
       "round": "online_qualification",
+      "problem": {
+        "title": "Rides",
+        "description": "Lorem ipsum dolor sit amet",
+        "pdf": "photo_slideshow.pdf"
+      },
       "input": [
         {
           "label": "A - Example",
@@ -31,9 +36,14 @@
     {
       "label": "Online qualification round",
       "round": "online_qualification",
+      "problem": {
+        "title": "Photo Slideshow",
+        "description": "Given a list of photos and the tags associated with each photo, arrange the photos into a slideshow that is as interesting as possible",
+        "pdf": "photo_slideshow.pdf"
+      },
       "input": [
         {
-          "label": "A – Example",
+          "label": "A - Example",
           "filename": "a_example.txt"
         },
         {
