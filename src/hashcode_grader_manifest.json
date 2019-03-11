@@ -1,0 +1,56 @@
+{
+  "2018": [
+    {
+      "round": "online_qualification",
+      "input": [
+        {
+          "label": "A - Example",
+          "filename": "a_example.in"
+        },
+        {
+          "label": "B - Should be easy",
+          "filename": "b_should_be_easy.in"
+        },
+        {
+          "label": "C - No hurry",
+          "filename": "c_no_hurry.in"
+        },
+        {
+          "label": "D - Metropolis",
+          "filename": "d_metropolis.in"
+        },
+        {
+          "label": "E - High bonus",
+          "filename": "e_high_bonus.in"
+        }
+      ]
+    }
+  ],
+  "2019": [
+    {
+      "round": "online_qualification",
+      "input": [
+        {
+          "label": "A – Example",
+          "filename": "a_example.txt"
+        },
+        {
+          "label": "B - Lovely landscapes",
+          "filename": "b_lovely_landscapes.txt"
+        },
+        {
+          "label": "C - Memorable moments",
+          "filename": "c_memorable_moments.txt"
+        },
+        {
+          "label": "D - Pet pictures",
+          "filename": "d_pet_pictures.txt"
+        },
+        {
+          "label": "E - Shiny selfies",
+          "filename": "e_shiny_selfies.txt"
+        }
+      ]
+    }
+  ]
+}

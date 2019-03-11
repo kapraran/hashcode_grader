@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+
+    <title>Hashcode 2018 grader</title>
+    <meta property="og:title" content="Hashcode 2018 grader" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nikosk93.github.io/hashcode2018_grader/" />
+    <meta property="og:image" content="https://nikosk93.github.io/hashcode2018_grader/images/hashcode2018_grader_og.png" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <header class="md-layout md-alignment-center-center">
+            <img id="logo" src="images/logo.png" alt="logo">
+            <h1>Hashcode 2018 grader</h1>
+        </header>
+        <div class="md-layout">
+            <div class="md-layout-item md-size-45 md-small-size-100">
+                <output-uploader v-for="out in outputs" :output="out"></output-uploader>
+            </div>
+            <div class="md-layout-item score-history md-small-size-100">
+                <md-card>
+                    <md-card-header>
+                        <div class="md-headline">Best Score</div>
+                    </md-card-header>
+                    <md-card-content>
+                        <output-best v-for="out in outputs" :output="out"></output-best>
+
+                        <div class="score-best total md-layout">
+                            <div class="md-layout-item">Total</div>
+                            <div>{{ totalBestScore }}</div>
+                        </div>
+                    </md-card-content>
+                    <md-card-actions>
+                        <md-button @click="clearBestScores">Clear Scores</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/x-template" id="output-uploader-tpl">
+        <div class="output-uploader">
+            <div class="file-name md-subheading">
+                <md-icon>label</md-icon> {{ output.name }}
+            </div>
+            <div class="md-layout md-alignment-center-left">
+                <label>
+                    <div class="md-button md-raised md-primary md-theme-default">
+                        <div class="md-ripple"><div class="md-button-content">Upload File</div></div>
+                    </div>
+                    <input :disabled="loading" type="file" @change="onFileChange"/>
+                </label>
+                <div class="md-layout-item drop-file">
+                    <span v-if="!selectedFile" style="opacity: 0.75">or drop file here</span>
+                    <span v-if="selectedFile">{{ selectedFile.name }}</span>
+                </div>
+                <div class="score">
+                    <span class="md-title">{{ score }}</span> pts
+                </div>
+                <div class="progress">
+                    <md-progress-spinner v-if="loading" :md-diameter="20" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="output-best-tpl">
+        <div class="score-best md-layout">
+            <div class="md-layout-item">{{ output.name }}</div>
+            <div>{{ output.bestScore }}</div>
+        </div>
+    </script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-resource@1.5.0"></script>
+    <script src="https://unpkg.com/vue-material@beta"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

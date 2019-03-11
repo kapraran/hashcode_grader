@@ -1,0 +1,24 @@
+{
+  "name": "hashcode_grader",
+  "version": "1.0.0",
+  "description": "A tool to check your hashcode score",
+  "repository": "git@github.com:nikosk93/hashcode2018_grader.git",
+  "author": "Nikos Kapraras <iamnikosk93@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.6.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "bulma": "^0.7.4",
+    "parcel-bundler": "^1.11.0",
+    "sass": "^1.17.2",
+    "vue": "^2.6.8",
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-template-compiler": "^2.6.8"
+  },
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  }
+}

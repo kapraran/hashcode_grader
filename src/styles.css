@@ -1,0 +1,57 @@
+#app {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+#logo {
+    width: 64px;
+    margin-right: 16px;
+}
+
+#app > header {
+    padding: 16px 0 32px;
+}
+
+#app .output-uploader {
+    padding: 8px;
+}
+
+#app .output-uploader .file-name {
+    padding: 8px;
+}
+
+#app .output-uploader .drop-file {
+    background-color: #ccc;
+    padding: 8px 16px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+#app .output-uploader input[type="file"] {
+    display: none;
+}
+
+#app .output-uploader .score {
+    padding: 0 8px;
+    min-width: 130px;
+    text-align: right;
+}
+
+#app .output-uploader .progress {
+    min-width: 36px;
+}
+
+#app .score-history {
+    padding: 16px;
+}
+
+#app .score-history .score-best {
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+#app .score-history .score-best.total {
+    border-top: 1px solid #ccc;
+    font-weight: bold;
+    padding: 16px 0 8px;
+}
