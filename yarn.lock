@@ -566,6 +566,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@fortawesome/fontawesome-free@^5.7.2":
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.7.2.tgz#1498c3eb78ee7c78c5488418707de90aaf58d5d7"
+
 "@iarna/toml@^2.2.0":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.3.tgz#f060bf6eaafae4d56a7dac618980838b0696e2ab"

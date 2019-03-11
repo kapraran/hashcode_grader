@@ -1,12 +1,19 @@
 <template>
   <header id="main-header">
     <div id="logo">
-      <img src="../../images/logo.png" alt="hashcode logo">
+      <img src="../../images/google-hashcode-logo.png" alt="hashcode logo">
       <h1>Hashcode Grader</h1>
     </div>
     <nav id="options">
-      <hc-dropdown :value="selectedYear" :values="yearList" @change="onYearChange"></hc-dropdown>
-      <hc-dropdown :value="selectedRound" :values="roundList" @change="onRoundChange"></hc-dropdown>
+      <hc-dropdown
+        :values="yearValues"
+        @change="onYearChange">
+      </hc-dropdown>
+      <hc-dropdown
+        :values="roundValues"
+        :labels="roundLabels"
+        @change="$emit('roundChange', $event)">
+      </hc-dropdown>
     </nav>
   </header>
 </template>
@@ -23,28 +30,23 @@ export default {
 
   data () {
     return {
-      selectedYear: 0,
-      selectedRound: 0
+      selectedYear: null
     }
   },
 
   created() {
-    this.selectedYear = this.yearList[0]
-    this.selectedRound = this.roundList[0]
+    this.selectedYear = this.yearValues[0]
   },
 
   methods: {
     onYearChange(year) {
       this.selectedYear = year
-    },
-
-    onRoundChange(round) {
-      this.selectedRound = round
+      this.$emit('yearChange', year)
     }
   },
 
   computed: {
-    yearList() {
+    yearValues() {
       return Object
         .keys(this.manifest)
         .map(y => parseInt(y))
@@ -52,8 +54,12 @@ export default {
         .reverse()
     },
 
-    roundList() {
-      return this.manifest[this.selectedYear].map(r => r.round)
+    roundValues() {
+      return !this.selectedYear ? []: this.manifest[this.selectedYear].map(r => r.round)
+    },
+
+    roundLabels() {
+      return !this.selectedYear ? []: this.manifest[this.selectedYear].map(r => r.label || r.round)
     }
   }
 }

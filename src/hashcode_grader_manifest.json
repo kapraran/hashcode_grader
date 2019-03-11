@@ -1,6 +1,7 @@
 {
   "2018": [
     {
+      "label": "Online qualification round",
       "round": "online_qualification",
       "input": [
         {
@@ -28,6 +29,7 @@
   ],
   "2019": [
     {
+      "label": "Online qualification round",
       "round": "online_qualification",
       "input": [
         {
