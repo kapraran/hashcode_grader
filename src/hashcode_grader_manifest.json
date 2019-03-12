@@ -4,9 +4,10 @@
       "label": "Online qualification round",
       "round": "online_qualification",
       "problem": {
-        "title": "Rides",
-        "description": "Lorem ipsum dolor sit amet",
-        "pdf": "photo_slideshow.pdf"
+        "title": "Self-driving rides",
+        "description": "Given a list of pre-booked rides in a city and a fleet of self-driving vehicles, assign the rides to vehicles, so that riders get to their destinations on time.",
+        "pdf": "hashcode2018_qualification_task.pdf",
+        "thumbnail": "rides_thumb.jpg"
       },
       "input": [
         {
@@ -39,7 +40,8 @@
       "problem": {
         "title": "Photo Slideshow",
         "description": "Given a list of photos and the tags associated with each photo, arrange the photos into a slideshow that is as interesting as possible",
-        "pdf": "photo_slideshow.pdf"
+        "pdf": "photo_slideshow.pdf",
+        "thumbnail": "slides_thumb.jpg"
       },
       "input": [
         {

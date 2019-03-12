@@ -4,7 +4,7 @@
       <article class="media">
         <figure class="media-left">
           <p class="image">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
+            <img :src="'./assets/images/' + problem.thumbnail">
           </p>
         </figure>
         <div class="media-content">

@@ -21,6 +21,10 @@ class Line {
     this.index += n
     return this
   }
+
+  isEmpty() {
+    return this.index >= this.segments.length
+  }
 }
 
 class Reader {
@@ -39,6 +43,10 @@ class Reader {
 
   arr(converter=to.int) {
     return this.line().rest(converter)
+  }
+
+  isEmpty() {
+    return this.index >= this.lines.length
   }
 
   static createFromRemoteInput(year, round, filename) {

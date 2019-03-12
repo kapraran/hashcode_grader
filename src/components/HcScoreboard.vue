@@ -8,7 +8,7 @@
       </header>
       <div class="card-content">
         <div class="content">
-          <div v-for="file in files" class="file-stats">
+          <div v-for="file in files" :key="file.filename" class="file-stats">
             <span class="label">{{ file.label }}</span>
             <span class="score">{{ file.bestScore }}</span>
           </div>
@@ -32,12 +32,6 @@ export default {
 
   data() {
     return {}
-  },
-
-  watch: {
-    files(newValue, oldValue) {
-      console.log('in scoreboard files changed')
-    }
   },
 
   methods: {

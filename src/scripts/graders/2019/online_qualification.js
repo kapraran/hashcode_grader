@@ -63,12 +63,12 @@ export default function(input, output) {
   // read and evaluate the output
   const slidesN = output.next()
   let score = 0
-  let lastSlide = Slide.createFromPhotoIds(output.arr(), photos)
+  let prevSlide = Slide.createFromPhotoIds(output.arr(), photos)
   for (let i=1; i<slidesN; i++) {
+  // while(!output.isEmpty()) {
     const currSlide = Slide.createFromPhotoIds(output.arr(), photos)
-    score += lastSlide.calcScore(currSlide)
-
-    lastSlide = currSlide
+    score += prevSlide.calcScore(currSlide)
+    prevSlide = currSlide
   }
 
   return score

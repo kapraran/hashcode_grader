@@ -6,29 +6,15 @@ import '../node_modules/@fortawesome/fontawesome-free/js/solid.min.js'
 
 // -- Implementation of basic Set operations - by MDN
 Set.prototype.union = function(setB) {
-    const union = new Set(this)
-    for (let elem of setB) {
-        union.add(elem)
-    }
-    return union
+    return new Set([...this, ...setB])
 }
 
 Set.prototype.intersection = function(setB) {
-    const intersection = new Set();
-    for (let elem of setB) {
-        if (this.has(elem)) {
-            intersection.add(elem)
-        }
-    }
-    return intersection
+    return new Set([...this].filter(x => setB.has(x)))
 }
 
 Set.prototype.difference = function(setB) {
-    const difference = new Set(this);
-    for (let elem of setB) {
-        difference.delete(elem)
-    }
-    return difference;
+    return new Set([...this].filter(x => !setB.has(x)))
 }
 // --
 

@@ -46,25 +46,25 @@ function Vehicle(id, B, T) {
     };
 }
 
-function Reader(contents) {
-    this.contents = contents;
-    this.lines = contents.split('\n');
-    this.index = 0;
+// function Reader(contents) {
+//     this.contents = contents;
+//     this.lines = contents.split('\n');
+//     this.index = 0;
 
-    this.readLine = () => this.lines[this.index++];
+//     this.readLine = () => this.lines[this.index++];
 
-    this.readArray = () => {
-        tokens = this.readLine().split(' ');
-        nums = [];
+//     this.readArray = () => {
+//         tokens = this.readLine().split(' ');
+//         nums = [];
 
-        for (var i in tokens) nums.push(parseInt(tokens[i]));
+//         for (var i in tokens) nums.push(parseInt(tokens[i]));
 
-        return nums;
-    };
-}
+//         return nums;
+//     };
+// }
 
 function calculateScore(input, output) {
-    var arr = input.readArray();
+    var arr = input.arr()
     var R = arr[0];
     var C = arr[1];
     var F = arr[2];
@@ -73,7 +73,7 @@ function calculateScore(input, output) {
     var T = arr[5];
 
     var rides = [];
-    for (var i = 0; i < N; i++) rides.push(new Ride(i, input.readArray()));
+    for (var i = 0; i < N; i++) rides.push(new Ride(i, input.arr()));
 
     var score = 0;
     var ridesCompleted = 0;
@@ -81,7 +81,7 @@ function calculateScore(input, output) {
     for (var vid = 1; vid <= F; vid++) {
         var veh = new Vehicle(vid, B, T);
 
-        var line = output.readArray();
+        var line = output.arr();
         var vehRidesLen = line[0];
         var vehRides = line.slice(1);
 
@@ -102,4 +102,4 @@ function calculateScore(input, output) {
     return score;
 }
 
-module.exports = calculateScore
+export default calculateScore
