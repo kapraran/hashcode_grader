@@ -1,7 +1,7 @@
 <template>
   <header id="main-header">
     <div id="logo">
-      <img src="../../assets/images/google-hashcode-logo.png" alt="hashcode logo">
+      <img :src="'./assets/images/google-hashcode-logo.png'" alt="hashcode logo">
       <h1>Hashcode Grader</h1>
     </div>
     <nav id="options">
