@@ -11,6 +11,7 @@
         <div id="hc-uploader">
           <hc-output-uploader
             v-for="file in files"
+            :key="selectedYear + selectedRound + file.filename"
             :year="selectedYear"
             :round="selectedRound"
             :file="file"
@@ -21,7 +22,7 @@
 
       <aside>
         <hc-problem v-if="problem" :problem="problem"></hc-problem>
-        <hc-scoreboard :files="files"></hc-scoreboard>
+        <hc-scoreboard :files="files" @clear="clearBestScores"></hc-scoreboard>
       </aside>
     </main>
   </div>
@@ -87,6 +88,13 @@ export default {
           f.bestScore = score
           return this.$set(this.files, i, f)
         }
+      }
+    },
+
+    clearBestScores() {
+      for (let i in this.files) {
+        this.files[i].bestScore = 0
+        this.$set(this.files, i, this.files[i])
       }
     }
   }

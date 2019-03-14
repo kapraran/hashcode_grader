@@ -10,22 +10,24 @@
         <div class="content">
           <div v-for="file in files" :key="file.filename" class="file-stats">
             <span class="label">{{ file.label }}</span>
-            <span class="score">{{ file.bestScore }}</span>
+            <span class="score">{{ fmtNumber(file.bestScore) }}</span>
           </div>
           <div class="file-stats total">
             <span class="label">Total</span>
-            <span class="score">{{ totalBestScore }}</span>
+            <span class="score">{{ fmtNumber(totalBestScore) }}</span>
           </div>
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">Clear Scores</a>
+        <a class="card-footer-item" @click="$emit('clear')">Clear Scores</a>
       </footer>
     </div>
   </div>
 </template>
 
 <script>
+import {fmtNumber} from '../scripts/utils'
+
 export default {
   name: 'hc-scoreboard',
   props: ['files'],
@@ -37,6 +39,10 @@ export default {
   methods: {
     clearScores() {
       this.$emit('clear')
+    },
+
+    fmtNumber(n) {
+      return fmtNumber(n)
     }
   },
 
