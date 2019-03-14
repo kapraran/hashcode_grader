@@ -104,14 +104,6 @@ export default {
 <style lang="scss">
 $hc-padding-ds: 32px;
 
-#app {
-
-}
-
-#app-container {
-  /*color: #56b983;*/
-}
-
 main {
   display: flex;
 
