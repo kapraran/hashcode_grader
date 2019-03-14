@@ -2,7 +2,7 @@
   "name": "hashcode_grader",
   "version": "1.0.0",
   "description": "A tool to check your hashcode score",
-  "repository": "git@github.com:nikosk93/hashcode2018_grader.git",
+  "repository": "git@github.com:nikosk93/hashcode_grader.git",
   "author": "Nikos Kapraras <iamnikosk93@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {},
@@ -21,6 +21,6 @@
   },
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --no-source-maps"
+    "build": "parcel build --public-url ./hashcode_grader/ src/index.html --no-source-maps"
   }
 }
