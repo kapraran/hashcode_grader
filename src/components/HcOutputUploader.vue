@@ -26,6 +26,7 @@
 <script>
 import HcReader from '../scripts/reader'
 import graderLoader from '../scripts/graders'
+import { setTimeout } from 'timers';
 
 export default {
   name: 'hc-uploader',
@@ -50,10 +51,17 @@ export default {
 
   methods: {
     onFileChange(ev) {
+      if (this.loading)
+        return
+
       this.loading = true
       this.score = 0
       this.outputFile = ev.target.files[0]
 
+      this.calcOutputScore()
+    },
+
+    calcOutputScore() {
       const fsReader = new FileReader()
       fsReader.onload = (ev) => {
         const content = ev.target.result
@@ -81,8 +89,10 @@ export default {
     setScore(score) {
       this.score = score
 
-      if (score > this.bestScore)
+      if (score > this.bestScore) {
+        this.bestScore = score
         this.$emit('best', score, this.file)
+      }
     }
   }
 }

@@ -4,5 +4,6 @@ export const EventBus = new Vue()
 
 export const to = {
   int: (value) => parseInt(value),
-  str: (value) => value.toString()
+  float: (value) => parseFloat(value),
+  str: (value) => value.toString().trim()
 }

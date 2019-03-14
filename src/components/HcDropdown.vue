@@ -10,7 +10,7 @@
     </div>
     <div class="dropdown-menu" role="menu">
       <div class="dropdown-content">
-        <a v-for="(val, i) in values" @click="setSelected(i)" class="dropdown-item">
+        <a v-for="(val, i) in values" :key="i" @click="setSelected(i)" class="dropdown-item">
           {{ getLabel(i) }}
         </a>
       </div>
