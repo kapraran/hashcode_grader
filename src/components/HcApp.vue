@@ -25,6 +25,10 @@
         <hc-scoreboard :files="files" @clear="clearBestScores"></hc-scoreboard>
       </aside>
     </main>
+
+    <footer id="main-footer">
+      <a href="https://github.com/nikosk93/hashcode_grader" class="github-link"><i class="fab fa-github"></i></a>
+    </footer>
   </div>
 </template>
 
@@ -102,10 +106,16 @@ export default {
 </script>
 
 <style lang="scss">
+ @import "../styles/utils.scss";
+
 $hc-padding-ds: 32px;
 
 main {
   display: flex;
+
+  @include responsive() {
+    flex-direction: column;
+  }
 
   & > div, & > aside {
     display: flex;
@@ -120,6 +130,19 @@ main {
 
   & > aside {
     flex: 1;
+  }
+}
+
+#main-footer {
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a.github-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 32px;
   }
 }
 

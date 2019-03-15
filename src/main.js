@@ -3,6 +3,7 @@ import HcApp from './components/HcApp.vue'
 
 import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js'
 import '../node_modules/@fortawesome/fontawesome-free/js/solid.min.js'
+import '../node_modules/@fortawesome/fontawesome-free/js/brands.min.js'
 
 // -- Implementation of basic Set operations - by MDN
 Set.prototype.union = function(setB) {

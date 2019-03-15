@@ -2,7 +2,7 @@
   <header id="main-header">
     <div id="logo">
       <img :src="'./assets/images/google-hashcode-logo.png'" alt="hashcode logo">
-      <h1>Hashcode Grader</h1>
+      <h1><a href="/">Hashcode Grader</a></h1>
     </div>
     <nav id="options">
       <hc-dropdown
@@ -66,6 +66,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "../styles/utils.scss";
+
   $logo-size: 40px;
   $padding-ds: 32px;
 
@@ -75,12 +77,20 @@ export default {
     // border-bottom: 1px solid #ddd;
     background-color: #fafafa;
     margin-bottom: $padding-ds;
+
+    @include responsive() {
+      flex-direction: column;
+    }
   }
 
   #logo {
     display: flex;
     align-items: center;
     padding: $padding-ds;
+
+    @include responsive() {
+      justify-content: center;
+    }
 
     img {
       display: block;
@@ -92,6 +102,11 @@ export default {
       font-weight: 700;
       font-size: 24px;
       padding-left: 16px;
+
+      a {
+        text-decoration: none;
+        color: #363636;
+      }
     }
   }
 
@@ -99,6 +114,11 @@ export default {
     display: flex;
     align-items: center;
     padding: $padding-ds;
+
+    @include responsive() {
+      justify-content: center;
+      padding-top: 0;
+    }
 
     .dropdown {
       margin-right: 16px;
